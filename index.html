@@ -3,342 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثاندر لايف - الصفحة الرسمية</title>
+    <title>ثاندر لايف</title>
+    <!-- استدعاء خط Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Tahoma, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: #0b132b;
+            /* [1] خلفية الموقع الكاملة: حط رابط صورتك هنا، ومغلفة بلون ذهبي غامق مع تدرج فخم */
+            background: linear-gradient(rgba(20, 15, 5, 0.85), rgba(20, 15, 5, 0.92)), url('https://i.postimg.cc/76gYzV5X/IMG-9643.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
-        /* الهيدر العلوي */
-        header {
+        /* الحاوية الرئيسية */
+        .main-wrapper {
             width: 100%;
+            max-width: 1100px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(11, 19, 43, 0.8);
-            backdrop-filter: blur(5px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-container {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
+            gap: 20px;
+            background: rgba(30, 24, 10, 0.8);
             border: 2px solid #d4af37;
-            background-color: #121e31;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+            min-height: 620px;
+        }
+
+        /* القائمة الجانبية (يمين الشاشة) */
+        .sidebar {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            padding-left: 20px;
+        }
+
+        .server-brand {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* [2] صورة الشعار فوق على اليسار بجانب ثاندر لايف */
+        .brand-header-box {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
-        .logo-container img {
+        .server-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .server-logo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .header-text h2 {
-            font-size: 16px;
-            color: #d4af37;
-            font-weight: bold;
+        .server-brand h2 {
+            font-size: 20px;
+            color: #fcf3cf;
+            font-weight: 900;
         }
 
-        .header-text p {
-            font-size: 11px;
-            color: #aaa;
-        }
-
-        /* زر القائمة (الشرطات) */
-        .menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 26px;
-            height: 20px;
-        }
-
-        .menu-btn span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: #d4af37;
-            border-radius: 2px;
-        }
-
-        /* محتوى الصفحة الرئيسي */
-        .main-container {
-            margin-top: 100px;
-            width: 90%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .card {
-            width: 100%;
-            background: rgba(18, 30, 49, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .card h1 {
-            font-size: 26px;
-            color: #d4af37;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-
-        /* الأزرار الذهبية */
-        .gold-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #d4af37, #aa7c11);
-            color: #0b132b;
-            font-weight: bold;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 15px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: 0.3s;
-        }
-
-        .gold-btn:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, #e6c547, #c18f14);
-        }
-
-        /* القائمة الجانبية (Sidebar) */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100%;
-            background: #0b132b;
-            border-left: 2px solid #d4af37;
-            z-index: 1000;
-            transition: 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .sidebar.active {
-            right: 0;
-        }
-
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .sidebar-header h3 {
-            color: #d4af37;
-            font-size: 18px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #d4af37;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .sidebar-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .sidebar-link {
-            background: rgba(212, 175, 55, 0.1);
-            color: #fff;
-            padding: 12px 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-weight: bold;
-            transition: 0.3s;
-            text-align: right;
-        }
-
-        .sidebar-link:hover {
-            background: rgba(212, 175, 55, 0.25);
-            color: #d4af37;
-        }
-
-        /* الشاشات أو الأقسام الفرعية */
-        .page-section {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .page-section.active {
-            display: flex;
-        }
-
-        .sub-card {
-            width: 100%;
-            background: rgba(18, 30, 49, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .sub-card h3 {
-            color: #d4af37;
-            font-size: 18px;
-        }
-
-        .sub-card p {
-            color: #ccc;
+        .server-brand p {
             font-size: 13px;
+            color: #f9e79f;
+            margin-top: 5px;
+        }
+
+        /* أزرار القائمة الجانبية مع أنيميشن الفتح 0.7 ثانية */
+        .nav-btn {
+            background: rgba(40, 32, 12, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #fcf3cf;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: right;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(135deg, #b7950b, #7d6608);
+            border-color: #f1c40f;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            transform: translateX(-5px);
+        }
+
+        /* شاشة عرض المحتوى (يسار القائمة) مع أنيميشن البطء 0.7 ثانية */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 580px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fcf3cf;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .page-sec {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .page-sec.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* تنسيق الشبكات والمربعات */
+        .grid-custom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-box {
+            background: rgba(40, 32, 12, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .grid-box:hover {
+            border-color: #f1c40f;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .grid-box h4 {
+            color: #fcf3cf;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .grid-box p {
+            color: #f9e79f;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* تنسيق الحسابات */
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .account-card {
+            background: rgba(40, 32, 12, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .account-card h3 {
+            color: #fcf3cf;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .account-card p {
+            color: #f9e79f;
+            font-size: 13px;
+        }
+
+        /* الأزرار الذهبية الفخمة */
+        .gold-action-btn {
+            background: linear-gradient(135deg, #b7950b, #7d6608);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(183, 149, 11, 0.4);
+            transition: 0.5s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .gold-action-btn:hover {
+            background: linear-gradient(135deg, #d4af37, #b7950b);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .default-box {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(40, 32, 12, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .default-box p {
+            color: #f9e79f;
+            font-size: 15px;
+        }
+
+        /* الجوال */
+        @media(max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+                padding-left: 0;
+                padding-bottom: 15px;
+            }
+            .grid-custom, .accounts-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر -->
-    <header>
-        <div class="header-left">
-            <div class="logo-container">
-                <!-- استبدل رابط الصورة برابط صورتك من موقع Postimages -->
-                <img src="https://i.postimg.cc/x8yZkCJV/IMG-9606.jpg" alt="Logo">
-            </div>
-            <div class="header-text">
-                <h2>ثاندر لايف</h2>
-                <p>حياكم الله في سيرفر ثاندر لايف</p>
-            </div>
-        </div>
-        <button class="menu-btn" onclick="toggleSidebar()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
-
-    <!-- القائمة الجانبية -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3>ثاندر لايف</h3>
-            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-        </div>
-        <div class="sidebar-links">
-            <a href="#" class="sidebar-link" onclick="showSection('definition-section')">تعريف السيرفر</a>
-            <a href="#" class="sidebar-link" onclick="showSection('accounts-section')">حسابات السيرفر</a>
-        </div>
-    </div>
-
-    <!-- المحتوى الرئيسي -->
-    <div class="main-container">
+    <div class="main-wrapper">
         
-        <!-- الواجهة الرئيسية (زر استكشف) -->
-        <div id="home-section" class="page-section active">
-            <div class="card">
-                <h1>موقع ثاندر لايف الرسمي</h1>
-                <button class="gold-btn" onclick="showSection('accounts-section')">
-                    ⚡ استكشف
-                </button>
+        <!-- القائمة الجانبية (يمين الشاشة) -->
+        <div class="sidebar">
+            <div class="server-brand">
+                <div class="brand-header-box">
+                    <div class="server-logo">
+                        <!-- تحديد صورة الشعار فوق على اليسار -->
+                        <img src="https://i.postimg.cc/76gYzV5X/IMG-9643.jpg" alt="شعار">
+                    </div>
+                    <h2>ثاندر لايف</h2>
+                </div>
+                <!-- الكلام الصغير للبرمجة -->
+                <p>المبرمج ابو مستور</p>
             </div>
+
+            <!-- الأزرار الرئيسية -->
+            <button class="nav-btn active" onclick="switchSection('sec-intro', this)">تعريف ثاندر لايف</button>
+            <button class="nav-btn" onclick="switchSection('sec-accounts', this)">حسابات ثاندر لايف</button>
+            <button class="nav-btn" onclick="switchSection('sec-founders', this)">مؤسسين ثاندر لايف</button>
+            <button class="nav-btn" onclick="switchSection('sec-dev', this)">مبرمج ثاندر لايف</button>
+            <!-- زر استكشف الإضافي -->
+            <button class="nav-btn" onclick="switchSection('sec-explore', this)">استكشف</button>
         </div>
 
-        <!-- قسم تعريف السيرفر -->
-        <div id="definition-section" class="page-section">
-            <div class="sub-card">
-                <h3>تعريف السيرفر</h3>
-                <p>ثاندر لايف الذي يتميز في السناريوهات و الذي يتميز في الاداره وفي الاعضاء و البوتات الخاصه الذي يتميز عن السيرفرات الأخرى .</p>
-                <button class="gold-btn" onclick="showSection('home-section')">العودة للرئيسية</button>
-            </div>
-        </div>
+        <!-- محتوى الشاشة (يسار القائمة) -->
+        <div class="content-area">
 
-        <!-- قسم حسابات السيرفر -->
-        <div id="accounts-section" class="page-section">
-            
-            <!-- بطاقة التيك توك -->
-            <div class="sub-card">
-                <h3>تيك توك</h3>
-                <p>حساب ثاندر لايف تيك توك</p>
-                <a href="https://www.tiktok.com/@user1241085360005?_r=1&_t=ZS-98GOVgyUjrs" target="_blank" class="gold-btn">فتح حساب التيك توك</a>
+            <!-- 1. تعريف ثاندر لايف -->
+            <div id="sec-intro" class="page-sec active">
+                <div class="section-title">تعريف ثاندر لايف</div>
+                <div class="default-box">
+                    <p>ثاندر لايف الذي يتميز في السناريوهات و الذي يتميز في الاداره وفي الاعضاء و البوتات الخاصه الذي يتميز عن السيرفرات الأخرى .</p>
+                    <!-- زر الانضمام الآن -->
+                    <a href="https://discord.gg/SvFysNBP2" target="_blank" class="gold-action-btn">الانضمام الآن</a>
+                </div>
             </div>
 
-            <!-- بطاقة ديسكورد -->
-            <div class="sub-card">
-                <h3>سيرفر الدسكورد</h3>
-                <p>حياكم الله ف سيرفر ثاندر لايف</p>
-                <a href="https://discord.com/invite/52ZR2qJXE" target="_blank" class="gold-btn">انضمام الى مجتمع ثاندر لايف</a>
+            <!-- 2. حسابات ثاندر لايف -->
+            <div id="sec-accounts" class="page-sec">
+                <div class="section-title">حسابات ثاندر لايف</div>
+                <div class="accounts-grid">
+                    
+                    <!-- مربع التيك توك -->
+                    <div class="account-card">
+                        <h3>التيك توك</h3>
+                        <p>الذهاب الي حساب التيك توك</p>
+                        <a href="https://www.tiktok.com/@user1241085360005?_r=1&_t=ZS-98NDNwwjqzw" target="_blank" class="gold-action-btn">الانتقال الى التيك توك</a>
+                    </div>
+
+                    <!-- مربع الديسكورد -->
+                    <div class="account-card">
+                        <h3>الديسكورد</h3>
+                        <p>الانضمام الى ثاندر لايف</p>
+                        <a href="https://discord.gg/SvFysNBP2" target="_blank" class="gold-action-btn">الانتقال الى الديسكورد</a>
+                    </div>
+
+                </div>
             </div>
 
-            <button class="gold-btn" onclick="showSection('home-section')" style="margin-top: 10px;">العودة للرئيسية</button>
+            <!-- 3. مؤسسين ثاندر لايف (3 مربعات مجهزة لتعديلها لاحقاً) -->
+            <div id="sec-founders" class="page-sec">
+                <div class="section-title">مؤسسين ثاندر لايف</div>
+                <div class="grid-custom">
+                    
+                    <!-- المؤسس الأول -->
+                    <div class="grid-box">
+                        <div>
+                            <h4>فيصل</h4>
+                            <p>المؤسس الأول</p>
+                        </div>
+                        <a href="#" class="gold-action-btn">fxxfi909</a>
+                    </div>
+
+                    <!-- المؤسس الثاني -->
+                    <div class="grid-box">
+                        <div>
+                            <h4>عبدالله</h4>
+                            <p>المؤسس الثاني</p>
+                        </div>
+                        <a href="#" class="gold-action-btn">.s_e2</a>
+                    </div>
+
+                    <!-- المؤسس الثالث -->
+                    <div class="grid-box">
+                        <div>
+                            <h4>بندر</h4>
+                            <p>المؤسس الثالث</p>
+                        </div>
+                        <a href="#" class="gold-action-btn">n.a.h.m.909.</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 4. مبرمج ثاندر لايف -->
+            <div id="sec-dev" class="page-sec">
+                <div class="section-title">مبرمج ثاندر لايف</div>
+                <div class="grid-custom">
+                    <div class="grid-box" style="margin: 0 auto; width: 100%; max-width: 280px;">
+                        <div>
+                            <h4>ابو مستور</h4>
+                            <p>المبرمج</p>
+                        </div>
+                        <a href="#" class="gold-action-btn">_r_i.</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. قسم استكشف الإضافي -->
+            <div id="sec-explore" class="page-sec">
+                <div class="section-title">استكشف</div>
+                <div class="default-box">
+                    <p>استكشف المزيد من الأقسام والخدمات الخاصة بنا.</p>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
+        // دالة التنقل بين الأقسام ببطء ونعومة (0.7 ثانية)
+        function switchSection(secId, btnElement) {
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-        function showSection(sectionId) {
-            // إخفاء كل الأقسام
-            const sections = document.querySelectorAll('.page-section');
+            btnElement.classList.add('active');
+
+            const sections = document.querySelectorAll('.page-sec');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            // إظهار القسم المطلوب
-            document.getElementById(sectionId).classList.add('active');
-
-            // إغلاق القائمة الجانبية إذا كانت مفتوحة
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById(secId).classList.add('active');
+            }, 100);
         }
     </script>
 
